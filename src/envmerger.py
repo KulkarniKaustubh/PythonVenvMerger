@@ -19,6 +19,12 @@ def is_valid_venvs(envs):
 		if not os.path.isfile(f'{env}/bin/activate'):
 			not_invalid = False
 			print(f'\"{env}\"  ====> does not exist/is not a virtual environment')
+			continue
+
+		if env[0]!='/':
+			not_invalid = False
+			print(f'\"{env}\"  ====> is not an absolute path')
+			continue
 
 	return not_invalid
 
@@ -41,6 +47,8 @@ def add_venvs(envs):
 	for env in envs:
 		os.environ['PYTHONPATH'] += f'{env}/lib/python3.8/site-packages:'
 
+	print(os.environ['PYTHONPATH'])
+
 	return
 
 def main(argv):
@@ -55,7 +63,7 @@ def main(argv):
 		print("Adding all environment packages...")
 		add_venvs(envs)
 	else:
-		print("Correct the paths to the environments and retry.")
+		print("Enter the absolute path to the virtual environment OR correct the paths to the environments and retry.")
 		exit()
 
 if __name__ == '__main__':

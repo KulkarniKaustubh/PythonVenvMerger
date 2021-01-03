@@ -74,6 +74,8 @@ then
 	echo "Adding packages...\n"
 
 	update_python_path $@
+
+	echo "These packages will be available only in this shell instance. If you open another shell instance with the same environment, please make sure to run the command again.\n"
 else
 	return
 fi

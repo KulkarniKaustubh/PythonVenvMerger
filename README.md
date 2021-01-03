@@ -1,6 +1,13 @@
 # Python Virtual Environment Merger
 
-Utility to link packages from different Python virtual environments to your current one.
+Utility to link packages from different Python virtual environments to your current one.<br>
+
+## Requisites
+
+- Python 3+
+- Bash or Zsh
+
+<hr />
 
 ## Usage
 
@@ -12,8 +19,6 @@ envmerger <absolute paths to virtual environments>
 ```
 
 Once this is done, you are good to go! These packages will last as long as the shell instance is open. Once the shell is closed, or you open a new shell, your virtual environment will go back to accessing only its native packages.
-
-<hr />
 
 ## Installation
 
@@ -53,3 +58,7 @@ To uninstall, go to the cloned repo and run the uninstallation script:
 ```
 
 <hr />
+
+## TODO
+
+- [ ] Add the names of the venvs that are linked, to the shell prompt

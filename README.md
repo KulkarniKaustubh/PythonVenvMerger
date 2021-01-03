@@ -18,7 +18,13 @@ Then, as arguments, give the absolute paths of the environments whose packages y
 envmerger <absolute paths to virtual environments>
 ```
 
-Once this is done, you are good to go! These packages will last as long as the shell instance is open. Once the shell is closed, or you open a new shell, your virtual environment will go back to accessing only its native packages.
+Once this is done, you are good to go! These packages will last as long as the shell instance is open. Once the shell is closed, or you open a new shell, your virtual environment will go back to accessing only its native packages.<br>
+
+To remove all packages from external environments, you can also do:
+
+```
+envmerger clean
+```
 
 ## Installation
 
@@ -34,8 +40,9 @@ Next change directory to the cloned repo and run the installation script:
 cd PythonVenvMerger
 ./install.sh
 ```
+>The above commands can be used to update the already installed **envmerger** as well
 
-**Make sure to restart your shell after installation is complete.**
+Now you are ready to use **envmerger**!
 
 ## Help Menu
 

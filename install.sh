@@ -5,17 +5,7 @@ echo "Checking for the prerequisites..."
 pwd=`pwd`
 echo $pwd
 
-if [[ ! -d "$pwd/src" ]] || [[ ! -f "$pwd/src/environment_merge_utility.sh" ]]
-then
-	echo -e "Please check if the repo has been cloned correctly and try again."
-	return
-fi
-
-echo -n "Do you wish to proceed with installation? [Y/n]: "
-read choice
-
-if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
-then
+install() {
 	echo "Installing..."
 	sudo cp ./src/environment_merge_utility.sh /usr/local/bin/envmerger
 	sudo chmod 755 /usr/local/bin/envmerger
@@ -32,6 +22,33 @@ then
 		echo "alias envmerger=\"source envmerger\""
 		echo "Stopping installation"
 	fi
+}
+
+if [[ ! -d "$pwd/src" ]] || [[ ! -f "$pwd/src/environment_merge_utility.sh" ]]
+then
+	echo -e "Please check if the repo has been cloned correctly and try again."
+	return
+fi
+
+if [[ -f "/usr/local/bin/envmerger" ]]
+then
+	echo -n "You are re-installing/updating envmerger. Do you wish to proceed? [Y/n]: "
+	read choice
+
+	if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
+	then
+		install
+	else
+		echo "Stopping installation"
+	fi
 else
-	echo "Stopping installation"
+	echo -n "Do you wish to proceed with the installation of envmerger? [Y/n]: "
+	read choice
+
+	if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
+	then
+		install
+	else
+		echo "Stopping installation"
+	fi
 fi

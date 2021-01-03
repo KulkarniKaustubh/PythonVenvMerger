@@ -32,7 +32,7 @@ Next change directory to the cloned repo and run the installation script:
 
 ```
 cd PythonVenvMerger
-./installation.sh
+./install.sh
 ```
 
 **Make sure to restart your shell after installation is complete.**

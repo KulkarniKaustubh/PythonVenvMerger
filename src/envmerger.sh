@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/bash
 
 check_absolute_path() {
 	for env in "$@"
@@ -15,7 +15,6 @@ check_absolute_path() {
 check_valid_envs() {
 	for env in "$@"
 	do
-		# echo $env
 		if [ ! -d $env ] || [ ! -f "$env/bin/activate" ]
 		then
 			echo "$env ====> does not exist/is not a virtual environment"
@@ -24,16 +23,19 @@ check_valid_envs() {
 	done
 }
 
+update_python_path() {
+	for env in "$@"
+	do
+		python_version=`ls "$env/lib" | grep -i python3.`
+		export PYTHONPATH="$env/lib/$python_version/site-packages:$PYTHONPATH"
+		echo -e "Added `basename $env` -> $python_version packages to current venv"
+	done
+}
+
 echo "You are in virtual environment ====> `basename $VIRTUAL_ENV`"
 echo "Looking for the environments to be added..."
 check_absolute_path $@
 check_valid_envs $@
 echo "Found environments!"
-
-# ABS_PATH="/home/kaustubh/Envs/cv_old/"
-#
-# # ABS_PATH=$1
-#
-# export PYTHONPATH=$ABS_PATH/lib/python3.8/site-packages:$PYTHONPATH
-#
-# echo -e "Added `basename $ABS_PATH` to current venv"
+echo "Adding packages..."
+update_python_path $@

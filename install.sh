@@ -21,20 +21,17 @@ then
 	sudo chmod 755 /usr/local/bin/envmerger
 	shell=`basename $SHELL`
 	shell_config=`echo "/home/$USER/."$shell"rc"`
-	echo "Adding alias to $shell_config..."
+	echo "Adding alias to ====> $shell_config"
 	if [[ -f $shell_config ]]
 	then
 		echo "alias envmerger=\"source envmerger\"" >> $shell_config
+		echo "Please restart your shell to complete installation."
+		echo "Once you restart, you can call envmerger -h to see the help menu."
 	else
 		echo "$shell_config does not exist. Please add the alias given below to your shell config file."
 		echo "alias envmerger=\"source envmerger\""
 		echo "Stopping installation"
-		return
 	fi
 else
 	echo "Stopping installation"
-	return
 fi
-
-echo "Please restart your shell to complete installation."
-echo "Once you restart, you can call envmerger -h to see the help menu."

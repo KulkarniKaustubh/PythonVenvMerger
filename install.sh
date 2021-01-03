@@ -13,7 +13,6 @@ install() {
 	echo "Adding alias to ====> $shell_config"
 	if [[ -f $shell_config ]]
 	then
-		echo "alias envmerger=\"source envmerger\"" >> $shell_config
 		echo "Please restart your shell to complete installation."
 		echo "Once you restart, you can call envmerger -h to see the help menu."
 	else
@@ -47,6 +46,7 @@ else
 	if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
 	then
 		install
+		echo "alias envmerger=\"source envmerger\"" >> $shell_config
 	else
 		echo "Stopping installation"
 	fi

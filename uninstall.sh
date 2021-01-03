@@ -11,10 +11,11 @@ else
 
 	if [[ -f $shell_config ]]
 	then
-		sed -i 's/alias envmerger=.*//' $shell_config
+		# sed -i 's/alias envmerger=.*//' $shell_config
+		sed -i '/alias envmerger=.*/d' $shell_config
 	else
 		echo -e "Make sure to remove the alias in your ~/.`basename $SHELL`rc file!"
 	fi
 
-	echo "Succesfully uninstalled."	
+	echo "Succesfully uninstalled."
 fi

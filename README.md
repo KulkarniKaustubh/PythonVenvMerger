@@ -32,7 +32,7 @@ Next change directory to the cloned repo and run the installation script:
 
 ```
 cd PythonVenvMerger
-sudo ./installation.sh
+./installation.sh
 ```
 
 **Make sure to restart your shell after installation is complete.**
@@ -54,7 +54,7 @@ envmerger --help
 To uninstall, go to the cloned repo and run the uninstallation script:
 
 ```
-sudo ./uninstall.sh
+./uninstall.sh
 ```
 
 <hr />

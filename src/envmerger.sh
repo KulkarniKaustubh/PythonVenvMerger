@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
 check_absolute_path() {
+	echo "Looking for the environments to be added..."
+
 	for env in "$@"
 	do
 		if [ ${env:0:1} != '/' ]
@@ -21,9 +23,13 @@ check_valid_envs() {
 			exit
 		fi
 	done
+
+	echo "Found environments!"
 }
 
 update_python_path() {
+	echo "Adding packages..."
+
 	for env in "$@"
 	do
 		python_version=`ls "$env/lib" | grep -i python3.`
@@ -33,9 +39,6 @@ update_python_path() {
 }
 
 echo "You are in virtual environment ====> `basename $VIRTUAL_ENV`"
-echo "Looking for the environments to be added..."
 check_absolute_path $@
 check_valid_envs $@
-echo "Found environments!"
-echo "Adding packages..."
 update_python_path $@

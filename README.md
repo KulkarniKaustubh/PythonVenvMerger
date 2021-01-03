@@ -20,6 +20,8 @@ envmerger <absolute paths to virtual environments>
 
 Once this is done, you are good to go! These packages will last as long as the shell instance is open. Once the shell is closed, or you open a new shell, your virtual environment will go back to accessing only its native packages.<br>
 
+>NOTE: If packages clash, the version of said package from the external environment will be used and not the native package version.
+
 To remove all packages from external environments, you can also do:
 
 ```

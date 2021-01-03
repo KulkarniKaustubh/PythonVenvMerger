@@ -43,7 +43,7 @@ update_python_path() {
 	for env in "$@"
 	do
 		python_version=`ls "$env/lib" | grep -i python3.`
-		# export PYTHONPATH="$env/lib/$python_version/site-packages:$PYTHONPATH"
+		export PYTHONPATH="$env/lib/$python_version/site-packages:$PYTHONPATH"
 		echo -e "Added `basename $env` -> $python_version packages to current venv"
 	done
 	echo -e "\n"

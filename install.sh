@@ -3,7 +3,6 @@
 echo "Checking for the prerequisites..."
 
 pwd=`pwd`
-echo $pwd
 
 install() {
 	echo "Installing..."

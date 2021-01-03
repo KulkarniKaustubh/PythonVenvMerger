@@ -66,11 +66,13 @@ helper $@
 if [[ $valid == 1 ]]
 then
 	cleaner $@
+else
+	return
 fi
 
 if [[ $valid == 1 ]]
 then
-	if [[ ! -z $PYTHONPATH ]]
+	if [[ ! -z $VIRTUAL_ENV ]]
 	then
 		echo -e "You are in virtual environment ====> `basename $VIRTUAL_ENV`\n"
 		echo "Looking for the environments to be added..."

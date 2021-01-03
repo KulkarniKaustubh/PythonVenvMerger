@@ -18,4 +18,5 @@ else
 	fi
 
 	echo "Succesfully uninstalled."
+	eval $SHELL
 fi

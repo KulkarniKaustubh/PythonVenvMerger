@@ -5,20 +5,22 @@ echo "Checking for the prerequisites..."
 pwd=`pwd`
 
 install() {
-	echo "Installing..."
 	sudo cp ./src/environment_merge_utility.sh /usr/local/bin/envmerger
 	sudo chmod 755 /usr/local/bin/envmerger
+}
+
+add_alias() {
 	shell=`basename $SHELL`
 	shell_config=`echo "/home/$USER/."$shell"rc"`
-	echo "Adding alias to ====> $shell_config"
-	if [[ -f $shell_config ]]
+	# echo "Adding alias to ====> $shell_config"
+	if [[ ! -f $shell_config ]]
 	then
-		echo "Please restart your shell to complete installation."
-		echo "Once you restart, you can call envmerger -h to see the help menu."
-	else
 		echo "$shell_config does not exist. Please add the alias given below to your shell config file."
 		echo "alias envmerger=\"source envmerger\""
 		echo "Stopping installation"
+	else
+		echo "alias envmerger=\"source envmerger\"" >> $shell_config
+		eval $SHELL
 	fi
 }
 
@@ -35,7 +37,9 @@ then
 
 	if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
 	then
+		echo -e "Updating..."
 		install
+		echo -e "Succesfully updated."
 	else
 		echo "Stopping installation"
 	fi
@@ -45,8 +49,10 @@ else
 
 	if [[ "$choice" == "Y" ]] || [[ "$choice" == "y" ]]
 	then
+		echo -e "Installing..."
 		install
-		echo "alias envmerger=\"source envmerger\"" >> $shell_config
+		echo -e "Succesfully installed."
+		add_alias
 	else
 		echo "Stopping installation"
 	fi

@@ -5,8 +5,20 @@ helper() {
 	then
 		echo -e "\tOPTIONS:"
 		echo -e "\t-h, --help --> Brings up this menu"
+		echo -e "\tclean --> Removes all packages from external virtual environments"
 		echo -e "\n\tUSAGE: envmerger [ENVS] OR envmerger [OPTIONS]"
 		echo -e "\t\tENVS --> Absolute paths to the environments you want to add"
+		valid=0
+	else
+		valid=1
+	fi
+}
+
+cleaner() {
+	if [[ $1 == "clean" ]]
+	then
+		export PYTHONPATH=''
+		echo -e "Removed all packages from external virtual environments"
 		valid=0
 	else
 		valid=1
@@ -53,10 +65,20 @@ helper $@
 
 if [[ $valid == 1 ]]
 then
-	echo -e "You are in virtual environment ====> `basename $VIRTUAL_ENV`\n"
-	echo "Looking for the environments to be added..."
+	cleaner $@
+fi
 
-	check_absolute_path $@
+if [[ $valid == 1 ]]
+then
+	if [[ ! -z $PYTHONPATH ]]
+	then
+		echo -e "You are in virtual environment ====> `basename $VIRTUAL_ENV`\n"
+		echo "Looking for the environments to be added..."
+
+		check_absolute_path $@
+	else
+		return
+	fi
 else
 	return
 fi

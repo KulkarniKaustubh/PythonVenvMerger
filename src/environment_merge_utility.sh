@@ -79,6 +79,7 @@ then
 
 		check_absolute_path $@
 	else
+		echo -e "You are not in any virtual environment. Activate an environment and then try running the command again."
 		return
 	fi
 else
